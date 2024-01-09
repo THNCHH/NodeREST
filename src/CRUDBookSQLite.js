@@ -60,7 +60,7 @@ app.put('/books/:id', (req,res) => {
 });
 
 app.delete('/books/:id', (req, res)=> {
-    db.run('DELETE FROM books WHERE id = ?' , req.params.id, function(err) {
+    db.run('DELETE FROM books WHERE id = ?' , req.params.id, funtion(err) {
         if (err) {
             res.status(500).send(err);
         }   else {
@@ -70,4 +70,5 @@ app.delete('/books/:id', (req, res)=> {
 });
 
 const port = process.env.PORT || 3000;
-app.listen(port, () => console.log(`Example app listening at http://localhost:${port}`));
+app.listen(port, () => console.log(`Listening on port ${port}...`));
+
