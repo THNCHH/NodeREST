@@ -60,15 +60,13 @@ app.put('/books/:id', (req,res) => {
 });
 
 app.delete('/books/:id', (req, res)=> {
-    db.run('DELETE FROM books WHERE id = ?' , req.params.id, funtion(err) {
-        if (err) {
-            res.status(500).send(err);
-        }   else {
-            res.send({});
-        }
-    });
+   const book = books.find(b => b.id === parseInt(req.params.id));
+   if (!book) res.status(404).send('Book not found');
+   const index = books.indexOf(book);
+   books.splice(index, 1);
+   res.send(book);
 });
 
 const port = process.env.PORT || 3000;
-app.listen(port, () => console.log(`Listening on port ${port}...`));
+app.listen(port, () => console.log(`Example app listening at http://localhost:${port}`));
 
